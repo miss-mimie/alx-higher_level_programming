@@ -2,24 +2,24 @@
 
 from calculator_1 import add, sub, mul, div
 
-def perform_calculation(a: int, b: int ) -> None:
+
+def perform_calculation(a: int, b: int) -> None:
     """
-    Performs basic maths operations
+    Performs simple math operations
 
     Args:
-    a (int): operand 1
-    b (int): operand 2
-
+        a (int): operand 1
+        b (int): operand 2
     """
-
-    operators = {"+":add, "-":sub, "*":mul, "/":div}
+    operators = {"+": add, "-": sub, "*": mul, "/": div}
 
     for operator, calculator in operators.items():
-        print("{} {} {} = {}".format(a, b, calculator(a, b)))
+        print("{:d} {:s} {:d} = {:d}".format(a, operator, b, calculator(a, b)))
 
 
-        if __name__ == "__main__":
-            a = 10
-            b = 5
+if __name__ == "__main__":
+    a = 10
+    b = 5
 
-            perform_calculation(a, b)
+    # let's perform some basic math operations
+    perform_calculation(a, b)
