@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 
 
-def def print_list_integer(my_list=[]):
+def print_list_integer(my_list=[]):
     """
     Prints the elements(integers) in a list
 
     Args:
-    my_list: the list containing the integers to print
+        my_list: the list containing the integers to print
     """
-
     for element in my_list:
-        print("{:d}",format(element))
+        print("{:d}".format(element))
