@@ -1,8 +1,10 @@
--- This script lists all records of the table 'second_table' of the database
--- 'hbtn_0c_0'. The results are returned based on the highest score.
+-- This script converts the 'hbtn_0c_0' database to UTF8
 
--- list the score and name of the person ordered by the highest score.
-SELECT score, name 
-FROM second_table
-ORDER BY score
-DESC;
+-- alter the database
+ALTER DATABASE hbtn_0c_0 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- select the 'hbtn_0c_0' database
+USE hbtn_0c_0;
+
+-- alter the table 'first_table'
+ALTER TABLE first_table CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
