@@ -1,105 +1,44 @@
->>> add_integer = __import__('0-add_integer').add_integer
+#!/usr/bin/python3
 
-==== Test for expected behaviour ====
+"""
+This module provides a function that adds two numbers.
+"""
 
->>> add_integer(1, 2)
-3
->>> add_integer(100, -2)
-98
->>> add_integer(2)
-100
->>> add_integer(100.3, -2)
-98
->>> add_integer(-2, 100.3)
-98
->>> add_integer(0)
-98
->>> add_integer(float('8.9'))
-106
 
-==== Now let's check for edge cases ====
+def add_integer(a: "float | int", b: "float | int" = 98) -> int:
+    """Returns the sum of two integers.
 
-Edge case 1: Passing strings as arguments
->>> add_integer(4, "School")
-Traceback (most recent call last):
-...
-TypeError: b must be an integer
->>> add_integer("Best", "School")
-Traceback (most recent call last):
-...
-TypeError: a must be an integer
+    Args:
+        a (float | int): The first number.
+        b (float | int, optional): The second number. Defaults to 98.
 
-Edge case 2: Passing None as an argument
->>> add_integer(None)
-Traceback (most recent call last):
-...
-TypeError: a must be an integer
->>> add_integer(12, None)
-Traceback (most recent call last):
-...
-TypeError: b must be an integer
+    Raises:
+        TypeError: When the operands given are not of a valid type (integers).
 
-# Edge case 3: Passing infinity as an argument (Tests for overflow)
->>> add_integer(float('inf'))
-Traceback (most recent call last):
-...
-OverflowError: cannot convert float infinity to integer
->>> add_integer(76, float('inf'))
-Traceback (most recent call last):
-...
-OverflowError: cannot convert float infinity to integer
+    Returns:
+        int: The sum of the two numbers as an integer.
 
-# Edge 4: Check for the NaN type
->>> add_integer(float('nan'))
-Traceback (most recent call last):
-...
-ValueError: cannot convert float NaN to integer
+    Tests:
+        >>> add_integer(0)
+        98
+        >>> add_integer(1, -2)
+        -1
+        >>> add_integer('1', '67')
+        Traceback (most recent call last):
+        ...
+        TypeError: a must be an integer
+    """
+    if not isinstance(a, (int, float)):
+        raise TypeError("a must be an integer")
 
-# Edge 5: Try different sequence data types and others
->>> add_integer([4, 3])
-Traceback (most recent call last):
-...
-TypeError: a must be an integer
->>> add_integer(float('School'))
-Traceback (most recent call last):
-...
-ValueError: could not convert string to float: 'School'
+    if not isinstance(b, (int, float)):
+        raise TypeError("b must be an integer")
 
-# Edge case 6: Positional argument missing
->>> add_integer()
-Traceback (most recent call last):
-...
-TypeError: add_integer() missing 1 required positional argument: 'a'
+    # ensure the operands are of integer type
+    try:
+        int(a)
+        int(b)
+    except Exception as err:
+        raise err
 
-==== ALX-based tests ====
-
->>> add_integer(1, 2)
-3
->>> add_integer(100, -2)
-98
->>> add_integer(2)
-100
->>> add_integer(100.3, -2)
-98
->>> add_integer(-2, 100.3)
-98
->>> add_integer(4, "School")
-Traceback (most recent call last):
-...
-TypeError: b must be an integer
->>> add_integer("Best", "School")
-Traceback (most recent call last):
-...
-TypeError: a must be an integer
->>> add_integer(None)
-Traceback (most recent call last):
-...
-TypeError: a must be an integer
->>> add_integer(float('inf'))
-Traceback (most recent call last):
-...
-OverflowError: cannot convert float infinity to integer
->>> add_integer(float('nan'))
-Traceback (most recent call last):
-...
-ValueError: cannot convert float NaN to integer
+    return int(a) + int(b)
