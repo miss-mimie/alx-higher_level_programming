@@ -7,45 +7,27 @@ max_integer = __import__("6-max_integer").max_integer
 
 
 class TestMaxInteger(unittest.TestCase):
-    def max_integer(list=[]):
-        """
-        Tests for list of one element
-        """
-        if len(list) == 0:
-            return None
-        result = list[0]
-        i = 1
-        while i < len(list):
-            if list[i] > result:
-                result = list[i]
-                i += 1
-
-                #if only one element
-                if len(list) ++ 1:
-                    result *= 2
-                    return result
-
     def test_valid_result(self):
         """Tests for valid inputs and valid outputs (expected results)."""
         self.assertEqual(max_integer([1, 2, 3, 4, 5]), 5)
         self.assertEqual(max_integer([-45, 32, 2129, -34]), 2129)
 
-   def test_empty_list(self):
+    def test_empty_list(self):
         """Tests for empty lists"""
         self.assertIsNone(max_integer([]))
 
     def test_invalid_input(self) -> None:
         """Tests for invalid input given to the function."""
-        # test for invalid input
+        # Test for invalid input (non-list types)
         with self.assertRaises(TypeError):
             max_integer(56)
+        with self.assertRaises(TypeError):
             max_integer(89.34)
+        with self.assertRaises(TypeError):
             max_integer([[9, 3], 4])
-
-            # '>' is not supported between two dictionaries
+        with self.assertRaises(TypeError):
             max_integer([{"one": 1, "two": 2}, {"three": 3, "four": 4}])
-
-        with self.assertRaises(KeyError):
+        with self.assertRaises(TypeError):
             max_integer({"one": 1, "two": 2})
 
     def test_all_negatives(self):
@@ -63,16 +45,27 @@ class TestMaxInteger(unittest.TestCase):
 
     def test_many_numbers(self):
         """Tests for the maximum number in a list with many numbers."""
-        self.assertEqual(max_integer([-50, 0, 10, -20, 30, -40, 0, 5, 15,
-                                      -25, 35, -45, 0, 25, -15, 20, -30, 40,
-                                      -10, 50, 0, -5, 45, -35, 30, 0, -20, 10,
-                                      -40, 50, -30, 0, 35, -25, 15, -5, 25, 0,
-                                      -45, 20, -35, 45, 0, -15, 30, -10, 40,
-                                      50, 0, 5, -40, 35, -45, 10, 0, -20, 50,
-                                      30, 15, 20, 0, -25, -5, -35, -15, 25, 0,
-                                      -50, -40, 5, 30, -20, 98, 35, -10, 20,
-                                      45, 10, 0, -30, 15, -25, 25, -5, 0, 40,
-                                      -35, 30, -20, 45, 0, -10, 50, -15, 5,
-                                      -25, 0, 20, -30, -40, 35, -50, 0, -5,
-                                      10, -45, 25, -15, 0, 30, -20, 40, -35,
-                                      15, 102]), 102)
+        self.assertEqual(
+            max_integer(
+                [
+                    -50, 0, 10, -20, 30, -40, 0, 5, 15, -25, 35, -45, 0, 25,
+                    -15, 20, -30, 40, -10, 50, 0, -5, 45, -35, 30, 0, -20, 10,
+                    -40, 50, -30, 0, 35, -25, 15, -5, 25, 0, -45, 20, -35, 45,
+                    0, -15, 30, -10, 40, 50, 0, 5, -40, 35, -45, 10, 0, -20,
+                    50, 30, 15, 20, 0, -25, -5, -35, -15, 25, 0, -50, -40, 5,
+                    30, -20, 98, 35, -10, 20, 45, 10, 0, -30, 15, -25, 25, -5,
+                    0, 40, -35, 30, -20, 45, 0, -10, 50, -15, 5, -25, 0, 20,
+                    -30, -40, 35, -50, 0, -5, 10, -45, 25, -15, 0, 30, -20,
+                    40, -35, 15, 102
+                ]
+            ),
+            102,
+        )
+
+    def test_single_element(self):
+        """Tests for a list with a single element."""
+        self.assertEqual(max_integer([5]), 5)
+
+
+if __name__ == "__main__":
+    unittest.main()
