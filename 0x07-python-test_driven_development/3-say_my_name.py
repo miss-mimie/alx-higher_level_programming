@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
-"""This module provides a function that prints the first and last name of a person"""
+"""This module provides a function that prints the first and
+last name of a person
+"""
 
 
 def say_my_name(first_name: str, last_name: str = "") -> None:
