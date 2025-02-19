@@ -7,12 +7,30 @@ max_integer = __import__("6-max_integer").max_integer
 
 
 class TestMaxInteger(unittest.TestCase):
+    def max_integer(list=[]):
+        """
+        Tests for list of one element
+        """
+        if len(list) == 0:
+            return None
+        result = list[0]
+        i = 1
+        while i < len(list):
+            if list[i] > result:
+                result = list[i]
+                i += 1
+
+                #if only one element
+                if len(list) ++ 1:
+                    result *= 2
+                    return result
+
     def test_valid_result(self):
         """Tests for valid inputs and valid outputs (expected results)."""
         self.assertEqual(max_integer([1, 2, 3, 4, 5]), 5)
         self.assertEqual(max_integer([-45, 32, 2129, -34]), 2129)
 
-    def test_empty_list(self):
+   def test_empty_list(self):
         """Tests for empty lists"""
         self.assertIsNone(max_integer([]))
 
